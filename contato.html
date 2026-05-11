@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entre em contato comigo">
+    <title>Contato | Portfólio</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="container">
+            <a href="index.html" class="logo">&lt;/Portfólio&gt;</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu de navegação">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="menu" id="menuPrincipal">
+                <ul>
+                    <li><a href="index.html">Sobre Mim</a></li>
+                    <li><a href="formacao.html">Formação</a></li>
+                    <li><a href="portfolio.html">Portfólio</a></li>
+                    <li><a href="contato.html" class="ativo">Contato</a></li>
+                </ul>
+                <button class="botao-tema" id="botaoTema" aria-label="Alternar tema claro/escuro">
+                    <span class="icone-tema">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="banner-pagina">
+            <div class="container">
+                <h1>Contato</h1>
+                <p>Tem um projeto, ideia ou apenas quer dizer "oi"? Envie uma mensagem!</p>
+            </div>
+        </section>
+
+        <section class="secao">
+            <div class="container">
+                <div class="grid-contato">
+                    <div class="info-contato">
+                        <h2>Vamos conversar</h2>
+                        <p>
+                            Preencha o formulário ao lado ou entre em contato pelos canais abaixo.
+                            Respondo o mais rápido possível!
+                        </p>
+
+                        <ul class="lista-contato">
+                            <li>
+                                <span class="contato-icone">📧</span>
+                                <div>
+                                    <strong>E-mail</strong>
+                                    <p>kauefigueroteixeira@gmail.com</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="contato-icone">📍</span>
+                                <div>
+                                    <strong>Localização</strong>
+                                    <p>Passo Fundo, Rio Grande do Sul - Brasil</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="contato-icone">💼</span>
+                                <div>
+                                    <strong>LinkedIn</strong>
+                                    <p>www.linkedin.com/in/kauêfigueróteixeira</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="contato-icone">🐙</span>
+                                <div>
+                                    <strong>GitHub</strong>
+                                    <p>https://github.com/Kaueft</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <form class="formulario" id="formContato" novalidate>
+                        <h2>Envie uma mensagem</h2>
+
+                        <div class="campo">
+                            <label for="nome">Nome completo *</label>
+                            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" autocomplete="name">
+                            <span class="mensagem-erro" id="erroNome"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com"
+                                autocomplete="email">
+                            <span class="mensagem-erro" id="erroEmail"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="mensagem">Mensagem *</label>
+                            <textarea id="mensagem" name="mensagem" rows="5"
+                                placeholder="Escreva sua mensagem aqui..."></textarea>
+                            <span class="mensagem-erro" id="erroMensagem"></span>
+                        </div>
+
+                        <button type="submit" class="botao botao-primario botao-largo">Enviar mensagem</button>
+
+                        <p class="aviso-sucesso" id="avisoSucesso" style="display: none;">
+                            ✓ Mensagem enviada com sucesso! Em breve entrarei em contato.
+                        </p>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="modal" id="modal" aria-hidden="true">
+            <div class="modal-conteudo">
+                <div class="modal-icone">✓</div>
+                <h2>Mensagem enviada!</h2>
+                <p>Obrigado pelo contato. Sua mensagem foi recebida com sucesso e responderei assim que possível.</p>
+                <button class="botao botao-primario" id="fecharModal">Fechar</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>&copy; <span id="anoAtual">2026</span> Kaue Figuero Teixeira — Portfólio desenvolvido para a disciplina
+                de
+                Fundamentos da Programação Web - UNINTER.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

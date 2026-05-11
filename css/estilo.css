@@ -1,0 +1,1147 @@
+/* =============================================================
+   PORTFÓLIO PESSOAL - FOLHA DE ESTILOS PRINCIPAL
+   Disciplina: Fundamentos da Programação Web - UNINTER
+   Tecnologia: CSS3 puro (sem frameworks como Bootstrap/Tailwind)
+   ============================================================= */
+
+
+/* ========== 1. VARIÁVEIS CSS (CUSTOM PROPERTIES) ==========
+   Centralizam as cores e medidas usadas em todo o site.
+   Facilita a manutenção e permite trocar o tema (claro/escuro).
+================================================================ */
+:root {
+    /* Cores do tema CLARO (padrão) */
+    --cor-fundo: #f8fafc;
+    --cor-fundo-alt: #ffffff;
+    --cor-texto: #1e293b;
+    --cor-texto-claro: #64748b;
+    --cor-primaria: #4f46e5;
+    --cor-primaria-escura: #4338ca;
+    --cor-secundaria: #ec4899;
+    --cor-borda: #e2e8f0;
+    --cor-cabecalho: rgba(255, 255, 255, 0.85);
+    --cor-cartao: #ffffff;
+    --cor-sombra: rgba(15, 23, 42, 0.08);
+    --cor-sucesso: #10b981;
+    --cor-erro: #ef4444;
+
+    /* Medidas reutilizáveis */
+    --raio-borda: 12px;
+    --largura-max: 1200px;
+    --transicao: 0.25s ease;
+}
+
+/* Quando o atributo data-tema="escuro" estiver no <html>, sobrescreve as cores */
+[data-tema="escuro"] {
+    --cor-fundo: #0f172a;
+    --cor-fundo-alt: #1e293b;
+    --cor-texto: #f1f5f9;
+    --cor-texto-claro: #94a3b8;
+    --cor-primaria: #818cf8;
+    --cor-primaria-escura: #6366f1;
+    --cor-secundaria: #f472b6;
+    --cor-borda: #334155;
+    --cor-cabecalho: rgba(15, 23, 42, 0.85);
+    --cor-cartao: #1e293b;
+    --cor-sombra: rgba(0, 0, 0, 0.3);
+}
+
+
+/* ========== 2. RESET E ESTILOS GLOBAIS ==========
+   "Zera" margens/paddings padrão e define box-sizing universal.
+================================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* rolagem suave ao clicar em âncoras */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+    transition: background-color var(--transicao), color var(--transicao);
+    overflow-x: hidden;
+}
+
+/* Container reutilizável: centraliza e limita a largura do conteúdo */
+.container {
+    width: 100%;
+    max-width: var(--largura-max);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Links sem sublinhado padrão; herdam a cor do texto */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Imagens responsivas por padrão */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+
+/* ========== 3. CABEÇALHO (HEADER + MENU) ==========
+   Menu fixo no topo, com efeito "blur" no fundo (glassmorphism).
+================================================================ */
+.cabecalho {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--cor-cabecalho);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* compatibilidade Safari */
+    border-bottom: 1px solid var(--cor-borda);
+    transition: background-color var(--transicao);
+}
+
+.cabecalho .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.logo {
+    font-family: 'Courier New', monospace;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--cor-primaria);
+}
+
+/* Container do menu (nav) - precisa ser flex para o botão de tema
+   ficar alinhado horizontalmente com os links do menu */
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+/* Lista de links do menu */
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.menu a {
+    color: var(--cor-texto);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color var(--transicao);
+}
+
+.menu a:hover {
+    color: var(--cor-primaria);
+}
+
+/* Link "ativo" recebe uma linha embaixo (indicador da página atual) */
+.menu a.ativo {
+    color: var(--cor-primaria);
+}
+
+.menu a.ativo::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--cor-primaria);
+    border-radius: 2px;
+}
+
+/* Botão hamburguer (visível apenas no mobile) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--cor-texto);
+    border-radius: 2px;
+    transition: var(--transicao);
+}
+
+/* Botão de tema claro/escuro */
+.botao-tema {
+    background: transparent;
+    border: 1px solid var(--cor-borda);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: var(--transicao);
+    margin-left: 1rem;
+}
+
+.botao-tema:hover {
+    background-color: var(--cor-fundo-alt);
+    transform: rotate(15deg);
+}
+
+
+/* ========== 4. SEÇÃO "HERO" (Apresentação inicial) ========== */
+.hero {
+    padding: 5rem 0 4rem;
+    background: linear-gradient(135deg,
+            rgba(79, 70, 229, 0.08) 0%,
+            rgba(236, 72, 153, 0.05) 100%);
+}
+
+.hero-conteudo {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.hero-saudacao {
+    color: var(--cor-primaria);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.hero-nome {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-cargo {
+    font-size: 1.3rem;
+    color: var(--cor-texto-claro);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.hero-descricao {
+    color: var(--cor-texto-claro);
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+.hero-botoes {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Avatar circular com gradiente e as iniciais do nome */
+.hero-imagem {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 5rem;
+    font-weight: bold;
+    box-shadow: 0 20px 40px var(--cor-sombra);
+    /* Animação suave de "flutuar" */
+    animation: flutuar 4s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+
+/* ========== 5. BOTÕES ========== */
+.botao {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--raio-borda);
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transicao);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.botao-primario {
+    background-color: var(--cor-primaria);
+    color: white;
+}
+
+.botao-primario:hover {
+    background-color: var(--cor-primaria-escura);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--cor-sombra);
+}
+
+.botao-secundario {
+    background-color: transparent;
+    color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+.botao-secundario:hover {
+    background-color: var(--cor-primaria);
+    color: white;
+}
+
+.botao-largo {
+    width: 100%;
+}
+
+
+/* ========== 6. SEÇÕES GENÉRICAS ========== */
+.secao {
+    padding: 4rem 0;
+}
+
+.secao-alternada {
+    background-color: var(--cor-fundo-alt);
+}
+
+.titulo-secao {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+/* Linha decorativa abaixo do título da seção */
+.titulo-secao::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+}
+
+.banner-pagina {
+    text-align: center;
+    padding: 4rem 0 2rem;
+    background: linear-gradient(135deg,
+            rgba(79, 70, 229, 0.08) 0%,
+            rgba(236, 72, 153, 0.05) 100%);
+}
+
+.banner-pagina h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.banner-pagina p {
+    color: var(--cor-texto-claro);
+    font-size: 1.1rem;
+}
+
+
+/* ========== 7. GRIDS DIVERSOS ========== */
+.grid-duas-colunas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.grid-duas-colunas h3 {
+    margin-bottom: 1rem;
+    color: var(--cor-primaria);
+}
+
+.grid-duas-colunas p {
+    margin-bottom: 1rem;
+    color: var(--cor-texto-claro);
+}
+
+/* Cartão de informações pessoais na página "Sobre mim" */
+.cartao-info {
+    background-color: var(--cor-cartao);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    padding: 2rem;
+    box-shadow: 0 4px 12px var(--cor-sombra);
+}
+
+.lista-info {
+    list-style: none;
+}
+
+.lista-info li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.lista-info li:last-child {
+    border-bottom: none;
+}
+
+.lista-info strong {
+    color: var(--cor-primaria);
+    margin-right: 0.5rem;
+}
+
+/* Grade de cartões reutilizáveis (hobbies, cursos, etc.) */
+.grid-cartoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.cartao {
+    background-color: var(--cor-cartao);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transicao);
+    box-shadow: 0 4px 12px var(--cor-sombra);
+}
+
+.cartao:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px var(--cor-sombra);
+    border-color: var(--cor-primaria);
+}
+
+.cartao-icone {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cartao h3 {
+    margin-bottom: 0.5rem;
+}
+
+.cartao p {
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+}
+
+.cartao-meta {
+    font-size: 0.85rem !important;
+    color: var(--cor-primaria) !important;
+    margin-bottom: 0.5rem !important;
+    font-weight: 500;
+}
+
+
+/* ========== 8. TIMELINE (Página Formação) ==========
+   Linha vertical com pontos marcando os períodos.
+================================================================ */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 2rem;
+}
+
+/* Linha vertical da timeline */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--cor-primaria), var(--cor-secundaria));
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+}
+
+.timeline-marcador {
+    position: absolute;
+    left: -2rem;
+    top: 0.3rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--cor-primaria);
+    border: 3px solid var(--cor-fundo);
+    box-shadow: 0 0 0 2px var(--cor-primaria);
+}
+
+.timeline-conteudo {
+    background-color: var(--cor-cartao);
+    padding: 1.5rem;
+    border-radius: var(--raio-borda);
+    border: 1px solid var(--cor-borda);
+    box-shadow: 0 4px 12px var(--cor-sombra);
+}
+
+.timeline-periodo {
+    display: inline-block;
+    background-color: var(--cor-primaria);
+    color: white;
+    padding: 0.2rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.timeline-conteudo h3 {
+    margin-bottom: 0.25rem;
+}
+
+.timeline-instituicao {
+    color: var(--cor-secundaria);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+
+/* ========== 8.5. CARTÕES DE CERTIFICAÇÃO (compactos) ==========
+   Versão mais densa para listar certificações na página Formação.
+================================================================ */
+.subtitulo-categoria {
+    font-size: 1.4rem;
+    margin: 2.75rem 0 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--cor-borda);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.subtitulo-categoria:first-of-type {
+    margin-top: 1rem;
+}
+
+/* Pílula pequena que mostra o nº de certificações da categoria */
+.contador-categoria {
+    background-color: var(--cor-fundo-alt);
+    color: var(--cor-primaria);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.15rem 0.7rem;
+    border-radius: 20px;
+    border: 1px solid var(--cor-borda);
+    margin-left: auto;
+}
+
+.grid-cert {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Cartão de certificação - design com gradiente sutil e barra lateral */
+.cert-cartao {
+    position: relative;
+    background-color: var(--cor-cartao);
+    background-image: linear-gradient(135deg, transparent 0%, rgba(79, 70, 229, 0.04) 100%);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    padding: 1.5rem 1.25rem 1.25rem;
+    padding-left: 1.5rem;
+    transition: var(--transicao);
+    box-shadow: 0 2px 8px var(--cor-sombra);
+    overflow: hidden;
+}
+
+/* Barra lateral colorida com gradiente, criada via pseudo-elemento */
+.cert-cartao::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--cor-primaria), var(--cor-secundaria));
+}
+
+.cert-cartao:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px var(--cor-sombra);
+    border-color: var(--cor-primaria);
+}
+
+.cert-cartao h4 {
+    font-size: 1rem;
+    line-height: 1.35;
+    margin-bottom: 0.65rem;
+    color: var(--cor-texto);
+    font-weight: 600;
+}
+
+.cert-emissor {
+    color: var(--cor-primaria);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.cert-data {
+    color: var(--cor-texto-claro);
+    font-size: 0.82rem;
+    margin: 0;
+}
+
+/* Badge "Em andamento" no topo do cartão, com gradiente e animação suave */
+.badge-andamento {
+    display: inline-block;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.22rem 0.65rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
+    animation: pulsar-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulsar-badge {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.85;
+        transform: scale(1.03);
+    }
+}
+
+
+/* ========== 9. BARRAS DE PROGRESSO (Idiomas) ========== */
+.lista-idiomas {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.idioma-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.idioma-nome {
+    font-weight: 600;
+}
+
+.idioma-nivel {
+    color: var(--cor-texto-claro);
+    font-size: 0.9rem;
+}
+
+.barra-progresso {
+    background-color: var(--cor-borda);
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.barra-preenchimento {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
+    border-radius: 10px;
+    transition: width 1s ease;
+}
+
+
+/* ========== 10. PROJETOS (Página Portfólio) ========== */
+.secao-filtros {
+    padding: 2rem 0 0;
+}
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.botao-filtro {
+    background: transparent;
+    border: 2px solid var(--cor-borda);
+    color: var(--cor-texto);
+    padding: 0.5rem 1.25rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transicao);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.botao-filtro:hover {
+    border-color: var(--cor-primaria);
+    color: var(--cor-primaria);
+}
+
+.botao-filtro.ativo {
+    background-color: var(--cor-primaria);
+    color: white;
+    border-color: var(--cor-primaria);
+}
+
+.grid-projetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.projeto {
+    background-color: var(--cor-cartao);
+    border-radius: var(--raio-borda);
+    overflow: hidden;
+    border: 1px solid var(--cor-borda);
+    box-shadow: 0 4px 12px var(--cor-sombra);
+    transition: var(--transicao);
+}
+
+.projeto:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px var(--cor-sombra);
+}
+
+/* "Capa" colorida do projeto (gradiente definido inline no HTML) */
+.projeto-imagem {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.projeto-emoji {
+    font-size: 4rem;
+}
+
+.projeto-conteudo {
+    padding: 1.5rem;
+}
+
+.projeto-conteudo h3 {
+    margin-bottom: 0.75rem;
+}
+
+.projeto-conteudo p {
+    color: var(--cor-texto-claro);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.projeto-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background-color: var(--cor-fundo);
+    color: var(--cor-primaria);
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--cor-borda);
+}
+
+.projeto-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.link-projeto {
+    color: var(--cor-primaria);
+    font-weight: 500;
+    transition: var(--transicao);
+}
+
+.link-projeto:hover {
+    color: var(--cor-secundaria);
+}
+
+.mensagem-vazia {
+    text-align: center;
+    color: var(--cor-texto-claro);
+    padding: 3rem;
+    font-size: 1.1rem;
+}
+
+
+/* ========== 11. PÁGINA DE CONTATO ========== */
+.grid-contato {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3rem;
+}
+
+.info-contato h2,
+.formulario h2 {
+    margin-bottom: 1rem;
+}
+
+.info-contato>p {
+    color: var(--cor-texto-claro);
+    margin-bottom: 2rem;
+}
+
+.lista-contato {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.lista-contato li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contato-icone {
+    font-size: 1.75rem;
+    width: 50px;
+    height: 50px;
+    background-color: var(--cor-fundo-alt);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid var(--cor-borda);
+}
+
+.lista-contato strong {
+    display: block;
+    color: var(--cor-primaria);
+}
+
+.lista-contato p {
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+}
+
+/* Formulário em si */
+.formulario {
+    background-color: var(--cor-cartao);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    padding: 2rem;
+    box-shadow: 0 4px 12px var(--cor-sombra);
+}
+
+.campo {
+    margin-bottom: 1.25rem;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+}
+
+.campo input,
+.campo textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transicao);
+}
+
+.campo input:focus,
+.campo textarea:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Campos com erro recebem a classe ".invalido" via JS */
+.campo input.invalido,
+.campo textarea.invalido {
+    border-color: var(--cor-erro);
+}
+
+.campo textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Mensagem de erro abaixo de cada campo */
+.mensagem-erro {
+    display: block;
+    color: var(--cor-erro);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    min-height: 1.2em;
+    /* reserva espaço para evitar "saltos" no layout */
+}
+
+.aviso-sucesso {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--cor-sucesso);
+    padding: 0.75rem 1rem;
+    border-radius: var(--raio-borda);
+    margin-top: 1rem;
+    border: 1px solid var(--cor-sucesso);
+    text-align: center;
+    font-weight: 500;
+}
+
+
+/* ========== 12. MODAL DE CONFIRMAÇÃO ========== */
+.modal {
+    position: fixed;
+    inset: 0;
+    /* equivale a top:0; right:0; bottom:0; left:0 */
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    /* oculto por padrão; JS muda para "flex" */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal.ativo {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-conteudo {
+    background-color: var(--cor-cartao);
+    padding: 2.5rem;
+    border-radius: var(--raio-borda);
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-icone {
+    width: 70px;
+    height: 70px;
+    background-color: var(--cor-sucesso);
+    color: white;
+    font-size: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.modal-conteudo h2 {
+    margin-bottom: 0.75rem;
+}
+
+.modal-conteudo p {
+    color: var(--cor-texto-claro);
+    margin-bottom: 1.5rem;
+}
+
+
+/* ========== 13. RODAPÉ ========== */
+.rodape {
+    background-color: var(--cor-fundo-alt);
+    border-top: 1px solid var(--cor-borda);
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+    margin-top: 3rem;
+}
+
+
+/* ========== 14. RESPONSIVIDADE (Media Queries) ==========
+   Adapta o layout para tablets e celulares.
+================================================================ */
+
+/* Tablets (até 900px) */
+@media (max-width: 900px) {
+
+    .hero-conteudo,
+    .grid-duas-colunas,
+    .grid-contato {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-imagem {
+        order: -1;
+        /* coloca o avatar antes do texto no mobile */
+    }
+
+    .avatar {
+        width: 200px;
+        height: 200px;
+        font-size: 3.5rem;
+    }
+}
+
+/* Celulares (até 768px) */
+@media (max-width: 768px) {
+
+    /* Mostra o botão hamburguer */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Esconde o menu por padrão e o reposiciona como overlay */
+    .menu {
+        position: fixed;
+        top: 70px;
+        right: 0;
+        background-color: var(--cor-fundo-alt);
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+        height: calc(100vh - 70px);
+        padding: 2rem 1.5rem;
+        transform: translateX(100%);
+        /* fora da tela */
+        transition: transform 0.3s ease;
+        box-shadow: -4px 0 12px var(--cor-sombra);
+        border-left: 1px solid var(--cor-borda);
+    }
+
+    /* Menu aberto: classe "ativo" adicionada via JS */
+    .menu.ativo {
+        transform: translateX(0);
+    }
+
+    .menu ul {
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .botao-tema {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .hero {
+        padding: 3rem 0;
+    }
+
+    .secao {
+        padding: 3rem 0;
+    }
+
+    .titulo-secao {
+        font-size: 1.6rem;
+    }
+
+    .hero-botoes {
+        justify-content: center;
+    }
+
+    .hero-texto {
+        text-align: center;
+    }
+}
+
+/* Telas muito pequenas (até 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .formulario {
+        padding: 1.5rem;
+    }
+
+    .avatar {
+        width: 180px;
+        height: 180px;
+        font-size: 3rem;
+    }
+}

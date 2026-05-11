@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio pessoal - apresentação, formação e projetos">
+    <meta name="author" content="KAUE FIGUERO TEIXEIRA">
+    <title>Sobre Mim | Portfólio</title>
+
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="container">
+            <a href="index.html" class="logo">&lt;/Portfólio&gt;</a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu de navegação">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="menu" id="menuPrincipal">
+                <ul>
+                    <li><a href="index.html" class="ativo">Sobre Mim</a></li>
+                    <li><a href="formacao.html">Formação</a></li>
+                    <li><a href="portfolio.html">Portfólio</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+                <button class="botao-tema" id="botaoTema" aria-label="Alternar tema claro/escuro">
+                    <span class="icone-tema">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========================== CONTEÚDO PRINCIPAL ========================== -->
+    <main>
+        <section class="hero">
+            <div class="container hero-conteudo">
+                <div class="hero-texto">
+                    <p class="hero-saudacao">Olá, eu sou</p>
+                    <h1 class="hero-nome">KAUE FIGUERO TEIXEIRA</h1>
+                    <h2 class="hero-cargo">ANALISTA INFRAESTRUTURA DE TI E CYBERSEGURANÇA</h2>
+                    <p class="hero-descricao">
+                        Bem-vindo(a) ao meu portfólio online. Aqui você pode conhecer um pouco mais
+                        sobre minha trajetória.
+                    </p>
+                    <div class="hero-botoes">
+                        <a href="portfolio.html" class="botao botao-primario">Ver Projetos</a>
+                        <a href="contato.html" class="botao botao-secundario">Entrar em Contato</a>
+                    </div>
+                </div>
+                <div class="hero-imagem">
+                    <div class="avatar">
+                        <span>KFT</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="secao" id="sobre">
+            <div class="container">
+                <h2 class="titulo-secao">Sobre Mim</h2>
+                <div class="grid-duas-colunas">
+
+                    <div>
+                        <h3>Quem sou eu</h3>
+                        <p>
+                            Sou estudante de Ciencia da computação no Centro Universitário Internacional UNINTER,
+                            residente em Passo Fundo - RS. Minha jornada na área de tecnologia começou por
+                            curiosidade e hoje se tornou uma paixão pela criação de soluções digitais
+                            que tornam a vida das pessoas mais simples.
+                        </p>
+                        <p>
+                            Tenho interesse em infraestrutura de TI, redes e cibersegurança, principalmente por serem
+                            áreas que envolvem lógica, resolução de problemas e aprendizado constante. Também acredito
+                            que a segurança digital é cada vez mais importante no mundo atual.
+                        </p>
+                    </div>
+
+                    <div class="cartao-info">
+                        <h3>Informações Pessoais</h3>
+                        <ul class="lista-info">
+                            <li><strong>Nome:</strong> kaue Figuero Teixeira</li>
+                            <li><strong>Idade:</strong> 24 anos</li>
+                            <li><strong>Localização:</strong> Passo Fundo, RS</li>
+                            <li><strong>E-mail:</strong> kauefigueroteixeira@gmail.com</li>
+                            <li><strong>Curso:</strong> Ciência da Computação - UNINTER</li>
+                            <li><strong>Idiomas:</strong> Português (Nativo), Inglês (Intermediário)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao secao-alternada">
+            <div class="container">
+                <h2 class="titulo-secao">Hobbies & Interesses</h2>
+                <div class="grid-cartoes">
+
+                    <!-- Cada cartão representa um hobby - personalize conforme você -->
+                    <article class="cartao">
+                        <div class="cartao-icone">🎧</div>
+                        <h3>Música</h3>
+                        <p>Ouço de tudo um pouco — me ajuda a manter o foco enquanto estudo ou programo.</p>
+                    </article>
+
+                    <article class="cartao">
+                        <div class="cartao-icone">💻</div>
+                        <h3>Programação</h3>
+                        <p>Dedico parte do meu tempo livre a estudar linguagens, scripts e ferramentas de automação.</p>
+                    </article>
+
+                    <article class="cartao">
+                        <div class="cartao-icone">🎮</div>
+                        <h3>Games</h3>
+                        <p>Jogos de estratégia, FPS são minhas categorias favoritas nas horas vagas.</p>
+                    </article>
+
+                    <article class="cartao">
+                        <div class="cartao-icone">🛡️</div>
+                        <h3>Cybersegurança</h3>
+                        <p>Acompanho notícias da área, pratico desafios de CTF e estudo técnicas de defesa de sistemas.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="rodape">
+        <div class="container">
+            <p>&copy; <span id="anoAtual">2026</span> Kaue Figuero Teixeira — Portfólio desenvolvido para a disciplina
+                de Fundamentos da Programação Web - UNINTER.</p>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

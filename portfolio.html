@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projetos e trabalhos desenvolvidos">
+    <title>Portfólio | Projetos</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="container">
+            <a href="index.html" class="logo">&lt;/Portfólio&gt;</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu de navegação">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="menu" id="menuPrincipal">
+                <ul>
+                    <li><a href="index.html">Sobre Mim</a></li>
+                    <li><a href="formacao.html">Formação</a></li>
+                    <li><a href="portfolio.html" class="ativo">Portfólio</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+                <button class="botao-tema" id="botaoTema" aria-label="Alternar tema claro/escuro">
+                    <span class="icone-tema">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="banner-pagina">
+            <div class="container">
+                <h1>Portfólio</h1>
+                <p>Uma seleção dos trabalhos e projetos que desenvolvi ao longo da minha jornada.</p>
+            </div>
+        </section>
+
+        <section class="secao secao-filtros">
+            <div class="container">
+                <div class="filtros" id="filtros">
+                    <button class="botao-filtro ativo" data-filtro="todos">Todos</button>
+                    <button class="botao-filtro" data-filtro="web">Web</button>
+                    <button class="botao-filtro" data-filtro="sistemas">Sistemas &amp; Redes</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grade de projetos. O atributo data-categoria é lido pelo JS para filtrar -->
+        <section class="secao">
+            <div class="container">
+                <div class="grid-projetos" id="gridProjetos">
+
+                    <article class="projeto" data-categoria="web">
+                        <div class="projeto-imagem" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <span class="projeto-emoji">🏢</span>
+                        </div>
+                        <div class="projeto-conteudo">
+                            <h3>Alka Representações</h3>
+                            <p>Site institucional desenvolvido para empresa de representação comercial, com apresentação
+                                de produtos, marcas e canais de contato.</p>
+                            <div class="projeto-tags">
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">NextJS</span>
+                                <span class="tag">TailwindCSS</span>
+                                <span class="tag">ShadcnUI</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="projeto" data-categoria="web">
+                        <div class="projeto-imagem" style="background: linear-gradient(135deg, #f12711, #f5af19);">
+                            <span class="projeto-emoji">🚜</span>
+                        </div>
+                        <div class="projeto-conteudo">
+                            <h3>Passo Máquinas</h3>
+                            <p>Site para exposição e venda de máquinas e equipamentos agrícolas, com catálogo de
+                                produtos e área de contato para orçamento.</p>
+                            <div class="projeto-tags">
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">Web</span>
+                                <span class="tag">Responsivo</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="projeto" data-categoria="web">
+                        <div class="projeto-imagem" style="background: linear-gradient(135deg, #134e5e, #71b280);">
+                            <span class="projeto-emoji">🔧</span>
+                        </div>
+                        <div class="projeto-conteudo">
+                            <h3>Tractor Parts</h3>
+                            <p>Site para comércio de peças de tratores e implementos. Listagem de produtos, busca por
+                                categoria e formulário de pedido.</p>
+                            <div class="projeto-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Web</span>
+                                <span class="tag">Catálogo</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="projeto" data-categoria="sistemas">
+                        <div class="projeto-imagem" style="background: linear-gradient(135deg, #2980b9, #6dd5fa);">
+                            <span class="projeto-emoji">⚡</span>
+                        </div>
+                        <div class="projeto-conteudo">
+                            <h3>Scripts PowerShell para Active Directory</h3>
+                            <p>Conjunto de scripts em PowerShell para automatizar tarefas administrativas no Active
+                                Directory: criação em lote de usuários, gestão de grupos, auditoria de permissões e
+                                geração de relatórios.</p>
+                            <div class="projeto-tags">
+                                <span class="tag">PowerShell</span>
+                                <span class="tag">Active Directory</span>
+                                <span class="tag">Windows Server</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="projeto" data-categoria="sistemas">
+                        <div class="projeto-imagem" style="background: linear-gradient(135deg, #16222a, #3a6073);">
+                            <span class="projeto-emoji">⚙️</span>
+                        </div>
+                        <div class="projeto-conteudo">
+                            <h3>Otimização de Máquina e Rede</h3>
+                            <p>Scripts e procedimentos em PowerShell para otimização de desempenho de estações Windows e
+                                ajuste fino de configurações de rede local — limpeza, serviços, energia e diagnósticos.
+                            </p>
+                            <div class="projeto-tags">
+                                <span class="tag">PowerShell</span>
+                                <span class="tag">Windows</span>
+                                <span class="tag">Rede</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- Mensagem exibida via JS quando o filtro não encontra projetos -->
+                <p class="mensagem-vazia" id="mensagemVazia" style="display: none;">
+                    Nenhum projeto encontrado nesta categoria.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>&copy; <span id="anoAtual">2026</span> Kaue Figuero Teixeira — Portfólio desenvolvido para a disciplina
+                de Fundamentos da Programação Web - UNINTER.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
