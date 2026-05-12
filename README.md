@@ -4,7 +4,7 @@ Site portfólio pessoal desenvolvido como atividade prática da disciplina **Fun
 
 ## 🌐 Site publicado
 
-👉 [Acesse o site aqui](https://SEU-USUARIO.github.io/SEU-REPOSITORIO/)
+👉 [Acesse o site aqui](https://kaueft.github.io/portfolio/)
 
 ## 🛠️ Tecnologias utilizadas
 
@@ -47,7 +47,7 @@ Site portfólio pessoal desenvolvido como atividade prática da disciplina **Fun
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
+   git clone https://github.com/Kaueft/portfolio.git
    ```
 2. Abra o arquivo `index.html` no seu navegador.
 
